@@ -13,6 +13,7 @@ public class HttpSessionImpl implements HttpSession {
 	public HttpSessionImpl() {
 		setId(UUID.randomUUID().toString());
 		this.attributes = new HashMap<>();
+		this.isValid = true;
 	}
 
 	@Override

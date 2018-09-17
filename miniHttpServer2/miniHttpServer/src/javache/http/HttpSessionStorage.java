@@ -11,6 +11,15 @@ public class HttpSessionStorage {
 		this.allSessions = new HashMap<>();
 	}
 	
+	public HttpSession getById(String sessionId) {
+		if(!this.allSessions.containsKey(sessionId)) {
+			return null;
+		}
+		
+		return this.allSessions.get(sessionId);
+		
+	}
+	
 	public void addSession(HttpSession session) {
 		this.allSessions.putIfAbsent(session.getId(), session);
 	}
