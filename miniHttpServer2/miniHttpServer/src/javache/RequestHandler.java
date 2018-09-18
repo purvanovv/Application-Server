@@ -32,6 +32,9 @@ public class RequestHandler {
 		if (this.request.getMethod().equals("GET")) {
 			result = this.processGetRequest();
 		}
+		else if(this.request.getMethod().equals("POST")) {
+			result = this.processPostRequest();
+		}
 		this.sessionStorage.refreshSession();
 
 		return result;
@@ -60,8 +63,8 @@ public class RequestHandler {
 			this.response.addCookie("Javache", "deleted; expires=Thu, 01 Jan 1970 00:00:00 GMT");
 			return this.ok("Cookie expired successfuly".getBytes());
 		}
-		// FORBIDEN
 		else if (this.request.getRequestUrl().equals("/forbiden")) {
+			// FORBIDEN
 			if (!this.request.getCookies().containsKey("Javache")) {
 				return this.redirect("you must login to access this route".getBytes(), "/");
 			}
@@ -70,7 +73,19 @@ public class RequestHandler {
 			String username = session.getAttributes().get("username").toString();
 			return this.ok(("Hello " + username + "!").getBytes());
 		}
+		else if(this.request.getRequestUrl().equals("/register")) {
+			//REGISTER
+			return this.processPageRequest("register");
+		}
 		return processResourceRequest();
+	}
+	private byte[] processPostRequest() {
+		//REGISTER
+		if (this.request.getRequestUrl().equals("/register")) {
+			//if(parolata e validna)
+			//if(ne se sudurja takuv user v bazata)
+			//redirect to login
+		}
 	}
 
 	private String getMimeType(File file) {

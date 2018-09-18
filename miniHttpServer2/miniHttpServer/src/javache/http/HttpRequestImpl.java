@@ -39,7 +39,7 @@ public class HttpRequestImpl implements HttpRequest {
 		}
 		else if(this.getMethod().equals("POST")) {
 			String[] pathInfo = requestInfo[requestInfo.length-1].split("\\?");
-			String[] parameters = pathInfo[1].split("&");
+			String[] parameters = pathInfo[0].split("&");
 			for (int i = 0; i < parameters.length; i++) {
 				String[] parameterPair = parameters[i].split("=");
 				addBodyParameter(parameterPair[0], parameterPair[1]);
